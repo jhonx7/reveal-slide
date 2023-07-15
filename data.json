@@ -1,0 +1,7 @@
+[
+    {"type": "web", "url":"https://rami.bmkg.go.id/siam", "duration": "10000"},
+    {"type": "web", "url":"https://maritim.bmkg.go.id/inawis", "duration": "10000"},
+    {"type": "web", "url":"https://mhews.bmkg.go.id/lampung-realtime", "duration": "10000"},
+    {"type": "web", "url":"https://inatews.bmkg.go.id/wrs/index.html", "duration": "10000"},
+    {"type": "video", "url":"./videos/profil.mp4", "duration": "0"}
+]

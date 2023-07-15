@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
+
+    <title>reveal.js</title>
+
+    <link rel="stylesheet" href="dist/reset.css" />
+    <link rel="stylesheet" href="dist/reveal.css" />
+    <link rel="stylesheet" href="dist/theme/black.css" />
+
+    <!-- Theme used for syntax highlighted code -->
+    <link rel="stylesheet" href="plugin/highlight/monokai.css" />
+  </head>
+  <body>
+    <div class="reveal">
+      <div class="slides" id="slides">
+        <section data-background-image="./bg.jpg" data-autoslide="100"></section>
+      </div>
+    </div>
+
+    <script src="dist/reveal.js"></script>
+    <script src="plugin/notes/notes.js"></script>
+    <script src="plugin/markdown/markdown.js"></script>
+    <script src="plugin/highlight/highlight.js"></script>
+    <script>
+      fetch("http://localhost:3000/data.json")
+        .then((response) => response.json())
+        .then((json) => {
+          console.log(json);
+          json.forEach((element) => {
+            const section = document.createElement("section");
+			section.setAttribute("data-background-image", "./bg.jpg");
+
+            if (element.type == "web") {
+              section.setAttribute("data-autoslide", element.duration);
+              section.innerHTML =
+                `<iframe data-autoplay width="700" height="540" data-src="` +
+                element.url +
+                `" frameborder="0"></iframe>`;
+            } else {
+              section.innerHTML =
+                `<video data-src="` + element.url + `" data-autoplay></video>`;
+            }
+            document.getElementById("slides").appendChild(section);
+          });
+        });
+
+      // More info about initialization & config:
+      // - https://revealjs.com/initialization/
+      // - https://revealjs.com/config/
+      Reveal.initialize({
+        controls: false,
+        hash: false,
+        autoSlide: 100,
+        autoSlideStoppable: false,
+        progress: false,
+        transition: "none",
+        loop: true,
+		autoPlayMedia: true,
+		// width: "100vw",
+  		// height: "100vh",
+        // Learn about plugins: https://revealjs.com/plugins/
+        plugins: [RevealMarkdown, RevealHighlight, RevealNotes],
+      });
+    </script>
+  </body>
+</html>
